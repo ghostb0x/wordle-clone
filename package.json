@@ -1,9 +1,9 @@
 {
   "name": "word-game",
   "version": "0.1.0",
-  "private": true,
+  "private": "true",
   "author": "ghostb0x",
-  "homepage": "http://ghostb0x.github.io/wordle-clone"
+  "homepage": "http://ghostb0x.github.io/wordle-clone",
   "dependencies": {
     "new-component": "4.0.0",
     "prettier": "^2.6.2",
