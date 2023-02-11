@@ -12,12 +12,12 @@ import GuessLimitInput from '../GuessLimitInput/GuessLimitInput';
 
 function Game() {
   const [answer, setAnswer] = React.useState(sample(WORDS));
-
   console.info({ answer });
 
   const [guessesAllowed, setGuessesAllowed] = React.useState(
     NUM_OF_GUESSES_ALLOWED
   );
+  const [guessNum, setGuessNum] = React.useState(1);
 
   const startRenders = [];
   // start with empty guess grid
@@ -44,6 +44,7 @@ function Game() {
         setGuessList={setGuessList}
         guessesAllowed={guessesAllowed}
         setGuessesAllowed={setGuessesAllowed}
+        guessNum={guessNum}
       />
       <GuessList guessList={guessList} />
       <WordSubmit
@@ -53,6 +54,8 @@ function Game() {
         setAnswer={setAnswer}
         startRenders={startRenders}
         guessesAllowed={guessesAllowed}
+        guessNum={guessNum}
+        setGuessNum={setGuessNum}
       />
     </>
   );

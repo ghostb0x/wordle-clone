@@ -13,9 +13,10 @@ function WordSubmit({
   setAnswer,
   startRenders,
   guessesAllowed,
+  guessNum,
+  setGuessNum,
 }) {
   const [guess, setGuess] = React.useState('');
-  const [guessNum, setGuessNum] = React.useState(1);
   const [playing, setPlaying] = React.useState(true);
   const [won, setWon] = React.useState(false);
 
