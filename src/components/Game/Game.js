@@ -5,16 +5,23 @@ import { WORDS } from '../../data';
 import { NUM_OF_GUESSES_ALLOWED } from '../../constants';
 import WordSubmit from '../WordSubmit/WordSubmit';
 import GuessList from '../GuessList/GuessList';
+import GuessLimitInput from '../GuessLimitInput/GuessLimitInput';
 
 // Pick a random word on every pageload.
-const answer = sample(WORDS);
 // To make debugging easier, we'll log the solution in the console.
-console.info({ answer });
 
 function Game() {
+  const [answer, setAnswer] = React.useState(sample(WORDS));
+
+  console.info({ answer });
+
+  const [guessesAllowed, setGuessesAllowed] = React.useState(
+    NUM_OF_GUESSES_ALLOWED
+  );
+
   const startRenders = [];
   // start with empty guess grid
-  for (let i in range(NUM_OF_GUESSES_ALLOWED)) {
+  for (let i in range(guessesAllowed)) {
     let newRenderObj = {
       id: crypto.randomUUID(),
       value: [
@@ -32,11 +39,20 @@ function Game() {
 
   return (
     <>
+      <GuessLimitInput
+        guessList={guessList}
+        setGuessList={setGuessList}
+        guessesAllowed={guessesAllowed}
+        setGuessesAllowed={setGuessesAllowed}
+      />
       <GuessList guessList={guessList} />
       <WordSubmit
         guessList={guessList}
         setGuessList={setGuessList}
         answer={answer}
+        setAnswer={setAnswer}
+        startRenders={startRenders}
+        guessesAllowed={guessesAllowed}
       />
     </>
   );
