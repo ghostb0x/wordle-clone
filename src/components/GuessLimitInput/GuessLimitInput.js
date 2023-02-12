@@ -11,10 +11,7 @@ function GuessLimitInput({
   function updateGuessLimit(amount) {
     let newGuessList = [...guessList];
 
-    if (!amount) {
-      let newGuessesAllowed = guessesAllowed;
-      setGuessesAllowed(newGuessesAllowed);
-    } else if (amount > guessesAllowed) {
+    if (amount > guessesAllowed) {
       range(amount - guessesAllowed).map(() => {
         let newRenderObj = {
           id: crypto.randomUUID(),
@@ -38,26 +35,36 @@ function GuessLimitInput({
   }
 
   return (
-    <form
-      onSubmit={(event) => {
-        event.preventDefault();
-      }}
-    >
-      <p>
-        guesses allowed {''} {guessesAllowed}
-      </p>
-      <label htmlFor="guess">Change Current Guess Limit? </label>
-      <input
-        type="number"
-        id="guess"
-        name="guess"
-        min={guessNum > 1 ? guessNum : 1}
-        value={guessesAllowed}
-        onChange={(event) => {
-          updateGuessLimit(event.target.value);
-        }}
-      ></input>
-    </form>
+    <>
+      <h3>Change Current Guess Limit </h3>
+      <div className="ctrl">
+        <button
+          className="ctrl__button ctrl__button--decrement"
+          onClick={(event) => {
+            let min = 1;
+
+            guessNum > min ? (min = guessNum) : {};
+
+            guessesAllowed > min
+              ? updateGuessLimit(guessesAllowed - 1)
+              : window.alert('Cannot go below ' + min);
+          }}
+        >
+          &ndash;
+        </button>
+        <div className="ctrl__counter">
+          <div className="ctrl__counter-num">{guessesAllowed}</div>
+        </div>
+        <button
+          className="ctrl__button ctrl__button--increment"
+          onClick={(event) => {
+            updateGuessLimit(guessesAllowed + 1);
+          }}
+        >
+          +
+        </button>
+      </div>
+    </>
   );
 }
 
