@@ -41,13 +41,11 @@ function GuessLimitInput({
         <button
           className="ctrl__button ctrl__button--decrement"
           onClick={(event) => {
-            let min = 1;
-
-            guessNum > min ? (min = guessNum) : {};
-
-            guessesAllowed > min
+            guessesAllowed > guessNum
               ? updateGuessLimit(guessesAllowed - 1)
-              : window.alert('Cannot go below ' + min);
+              : window.alert(
+                  'Cannot go below current guess number: ' + guessNum
+                );
           }}
         >
           &ndash;
