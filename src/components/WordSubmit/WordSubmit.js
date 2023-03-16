@@ -52,10 +52,7 @@ function WordSubmit({
 
     if (guessNum <= guessesAllowed) {
       newGuessList[guessNum - 1] = newGuessObj;
-    } else {
-      newGuessList.shift();
-      newGuessList.push(newGuessObj);
-    }
+    } 
 
     setGuessList(newGuessList);
   }
