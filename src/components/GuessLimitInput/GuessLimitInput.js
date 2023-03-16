@@ -12,8 +12,7 @@ function GuessLimitInput({
     let newGuessList = [...guessList];
 
     if (amount > guessesAllowed) {
-      range(amount - guessesAllowed).map(() => {
-        let newRenderObj = {
+      let newRenderObj = {
           id: crypto.randomUUID(),
           value: [
             { letter: '', status: '' },
@@ -24,12 +23,10 @@ function GuessLimitInput({
           ],
         };
         newGuessList.push(newRenderObj);
-      });
-    } else {
-      range(guessesAllowed - amount).map(() => {
-        newGuessList.pop();
-      });
-    }
+      } else {
+      newGuessList.pop();
+      };
+      
     setGuessList(newGuessList);
     setGuessesAllowed(amount);
   }
